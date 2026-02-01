@@ -27,5 +27,15 @@ Route::post('/profile', [ProfileController::class, 'update'])->name('profile.upd
 
 use App\Http\Controllers\TaskController;
 Route::middleware('needsAuth')->group(function(){
+    // Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+    // Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
+    // Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+    // Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
+    // Route::put('/tasks/{id}', [TaskController::class, 'update'])->name('tasks.update');
+    // Route::delete('/tasks/{id}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+    // Route::patch('/tasks/{id}/toggle-complete', [TaskController::class, 'toggleComplete'])->name('tasks.toggle');
+//Route::resource does the same as above
+
     Route::resource('tasks', TaskController::class);
 });
+

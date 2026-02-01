@@ -26,4 +26,7 @@ class PageViewController extends Controller
     }
 
 
+    public function showtaskIndex(){
+        return view('tasks.index');
+    }
 }

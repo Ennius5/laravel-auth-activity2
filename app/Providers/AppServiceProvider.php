@@ -9,8 +9,12 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
+    protected $policies = [
+    'App\Task' => 'App\Policies\TaskPolicy',
+];
     public function register(): void
     {
+
         //
     }
 
