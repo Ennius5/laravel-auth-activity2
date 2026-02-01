@@ -21,9 +21,15 @@
              @auth
                 {{-- Show user's name or profile link --}}
                 <li>
-                    <span class="text-amber-300 font-medium">
+                    <a href="{{ route('profile') }}" class="text-amber-300 font-medium">
                         Welcome, {{ Auth::user()->name }}!
-                    </span>
+                    </a>
+
+                </li>
+                <li>
+                    <a href="{{ route('profile.edit') }}" class="text-white font-bold hover:text-amber-300 transition duration-300">
+                        Edit Profile
+                    </a>
                 </li>
                 {{-- Logout form (must use POST request for security) --}}
                 <li>

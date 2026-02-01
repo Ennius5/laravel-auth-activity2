@@ -52,7 +52,7 @@ public function login(Request $request){
         // Force save session
         session()->save();
 
-        return redirect()->intended('/tasks')->with('success', 'Welcome back!');
+        return redirect()->intended('/profile')->with('success', 'Welcome back!');
     }
 
     return back()->withErrors([

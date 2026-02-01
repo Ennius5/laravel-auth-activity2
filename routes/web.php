@@ -18,13 +18,10 @@ Route::post('/logout',[AuthController::class, 'logout'])->name('process.logout')
 
 Route::get('/home',[PageViewController::class, 'showHome'])->name('show.home');
 
+
+
+
 use App\Http\Controllers\ProfileController; // I'd rather put this close to where it's used...
-
-Route::middleware('needsAuth')->group(function () {
-Route::get('/profile', [PageViewController::class, 'showProfile'])->name('profile.show');
-Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
-});
-
 use App\Http\Controllers\TaskController;
 Route::middleware('needsAuth')->group(function(){
     // Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
@@ -37,6 +34,11 @@ Route::middleware('needsAuth')->group(function(){
 //Route::resource does the same as above
 
     Route::resource('tasks', TaskController::class);
+    Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+    Route::get('/profile/edit', function() {
+        return view('profile.edit');
+    })->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 
 
