@@ -1,4 +1,4 @@
-@extends('layout.layout')
+<!-- @extends('layout.layout')
 @section('title', 'My Todo List')
 @section('content')
     <h1>All Tasks</h1>
@@ -42,4 +42,5 @@
         <p>No tasks found. <a href="{{ route('tasks.create') }}">Create your first task!</a></p>
     @endforelse
 
-@endsection
+@endsection -->
+<!-- ABANDONED -->

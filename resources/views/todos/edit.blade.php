@@ -1,4 +1,4 @@
-@extends('layout.layout')
+<!-- @extends('layout.layout')
 @section('title', 'Edit Task')
 @section('content')
 <div class="row justify-content-center">
@@ -55,4 +55,5 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection -->
+<!-- ABANDONED -->

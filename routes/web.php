@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageViewController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('show.login');
 });
 Route::get('/register', [PageViewController::class,'showRegister'])->name('show.register');
 Route::post('/register', [AuthController::class,'register'])->name('process.register');

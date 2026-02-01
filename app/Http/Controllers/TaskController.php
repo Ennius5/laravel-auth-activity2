@@ -54,7 +54,7 @@ public function index()
         // 3. Create the task
         $task = Task::create($validated);
 
-        return redirect()->route('tasks.show', $task)
+        return redirect()->route('tasks.index', $task)
                          ->with('success', 'Task created successfully!');
     }
 
@@ -65,7 +65,7 @@ public function index()
             abort(403, 'Unauthorized action.');
         }
 
-        return view('tasks.show', compact('task'));
+        return view('tasks.index', compact('task'));
     }
 
     public function edit(Task $task) // Use Route Model Binding
@@ -95,7 +95,7 @@ public function index()
 
         $task->update($validated);
 
-        return redirect()->route('tasks.show', $task)
+        return redirect()->route('tasks.index', $task)
                          ->with('success', 'Task updated successfully!');
     }
 
