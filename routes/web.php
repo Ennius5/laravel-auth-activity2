@@ -12,9 +12,11 @@ Route::get('/register', [PageViewController::class,'showRegister'])->name('show.
 Route::post('/register', [AuthController::class,'register'])->name('process.register');
 
 Route::get('/login', [PageViewController::class,'showLogin'])->name('show.login');
-Route::post('/login', [AuthController::class,'login'])->name('process.login');
+Route::post('/login', [AuthController::class, 'login'])->name('process.login');
 
-Route::post('/logout',[AuthController::class, 'logout'])->name('logout');
+Route::post('/logout',[AuthController::class, 'logout'])->name('process.logout');
+
+Route::get('/home',[PageViewController::class, 'showHome'])->name('show.home');
 
 use App\Http\Controllers\ProfileController; // I'd rather put this close to where it's used...
 

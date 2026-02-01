@@ -1,102 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>@yield('title', 'My Portfolio')
-    </title>
-    <style>
-/* * {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-} */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    background-image: url('images/Dark-Woods-HD-Photo.jpg'); /* Add your image path */
-    background-size: cover; /* Makes image cover the entire screen */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents repeating */
-    background-attachment: fixed; /* Makes it stay in place when scrolling */
-    min-height: 100vh; /* Ensures it covers full viewport height */
-}
-nav {
-background: #362A17A1;
-color: white;
-padding: 1rem 2rem;
-}
-nav ul {
-list-style: none;
-display: flex;
-gap: 2rem;
-}
-nav a {
-color: white;
-text-decoration: none;
-font-weight: bold;
-}
-nav a:hover {
-color: #3498db;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'My Portfolio')</title>
 
-.container {
-max-width: 1200px;
-margin: 2rem auto;
-padding: 2rem;
-background: #BABABA85;
-border-radius: 8px;
-box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-h1 {
-color: #333;
-margin-bottom: 1rem;
-}
-footer {
-  position: sticky;
-  flex-shrink: 0;
-  text-align: center;
-  padding: 20px;
-  background: #362A17A1;
-  color: white;
-  margin-top: 2rem;
-}
-
-.social-links {
-  margin-top: 10px;
-}
-
-.social-links a {
-  margin: 0 10px;
-  color: #C0B16E;
-  text-decoration: none;
-}
-
-.social-links a:hover {
-  color: #FF0055;
-  text-decoration: solid;
-}
-</style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-<nav>
+<body class="font-sans antialiased bg-cover bg-center bg-no-repeat bg-fixed min-h-screen"
+      style="background-image: url('images/Dark-Woods-HD-Photo.jpg');">
 
-</nav>
-<div class="container">
-@yield('content')
+    <nav class="bg-amber-900/65 text-white px-8 py-4">
+        <ul class="flex space-x-8 list-none">
+            {{--  <li><a href="{{ route('home') }}" class="text-white font-bold hover:text-amber-300 transition duration-300">Home</a></li>
+            <li><a href="{{ route('about') }}" class="text-white font-bold hover:text-amber-300 transition duration-300">About</a></li>--}}
+            @guest
+                <li><a href="{{ route('show.register') }}" class="text-white font-bold hover:text-amber-300 transition duration-300">Register</a></li>
+                <li><a href="{{ route('show.login') }}" class="text-white font-bold hover:text-amber-300 transition duration-300">Log in</a></li>
+            @endguest
+             @auth
+                {{-- Show user's name or profile link --}}
+                <li>
+                    <span class="text-amber-300 font-medium">
+                        Welcome, {{ Auth::user()->name }}!
+                    </span>
+                </li>
+                {{-- Logout form (must use POST request for security) --}}
+                <li>
+                    <form method="POST" action="{{ route('process.logout') }}" class="inline">
+                        @csrf
+                        <button type="submit"
+                                class="text-white font-bold hover:text-amber-300 transition duration-300 bg-transparent border-none cursor-pointer">
+                            Log out
+                        </button>
+                    </form>
+                </li>
+            @endauth
+        </ul>
+    </nav>
 
-</div>
-<footer>
-  <p>&copy; {{ date('Y') }} All rights are opposites of lefts. All lefts my rights have reserved.</p>
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <div class="bg-gray-300/85 rounded-xl shadow-lg p-8">
+            @yield('content')
+        </div>
+    </div>
 
-  <div class="social-links">
-    <a href="https://github.com/Ennius5" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <a href="https://linkedin.com/in/Ennius5" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    <a href="https://twitter.com/Ennius5" target="_blank" rel="noopener noreferrer">Twitter</a>
-    <a href="https://instagram.com/Ennius5" target="_blank" rel="noopener noreferrer">Instagram</a>
-    <a href="mailto:e.campomanes101848@gmail.com">Email</a>
-  </div>
-</footer>
+    <footer class="sticky top-[100vh] bg-amber-900/65 text-white py-6 mt-8">
+        <div class="text-center">
+            <p class="mb-4">&copy; {{ date('Y') }} All rights are opposites of lefts. All lefts my rights have reserved.</p>
+
+            <div class="social-links space-x-6">
+                <a href="https://github.com/Ennius5" target="_blank" rel="noopener noreferrer"
+                   class="text-amber-400 hover:text-red-400 hover:underline transition duration-300">
+                    GitHub
+                </a>
+                <a href="https://linkedin.com/in/Ennius5" target="_blank" rel="noopener noreferrer"
+                   class="text-amber-400 hover:text-red-400 hover:underline transition duration-300">
+                    LinkedIn
+                </a>
+                <a href="https://twitter.com/Ennius5" target="_blank" rel="noopener noreferrer"
+                   class="text-amber-400 hover:text-red-400 hover:underline transition duration-300">
+                    Twitter
+                </a>
+                <a href="https://instagram.com/Ennius5" target="_blank" rel="noopener noreferrer"
+                   class="text-amber-400 hover:text-red-400 hover:underline transition duration-300">
+                    Instagram
+                </a>
+                <a href="mailto:e.campomanes101848@gmail.com"
+                   class="text-amber-400 hover:text-red-400 hover:underline transition duration-300">
+                    Email
+                </a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

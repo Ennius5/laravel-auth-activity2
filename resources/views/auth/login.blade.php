@@ -1,5 +1,5 @@
     @extends('layout.layout')
-    @section('title','index')
+    @section('title','log in')
     @section('content')
 
     <form method="POST" action="{{ route('process.login') }}" class="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
@@ -31,6 +31,9 @@
     <button type="submit" class=" bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300">
         Login
     </button>
+    <a href="{{ route('show.register') }}" class=" bg-amber-200 hover:bg-amber-300 text-white font-semibold py-3 px-4 rounded-lg transition duration-300">
+        Register
+    </a>
 
 
 </form>
