@@ -32,9 +32,6 @@
         Login
     </button>
 
-    <div class="mb-4 p-100 bg-red-500 text-white">
-    TEST: This should have a red background if Tailwind works
-</div>
 
 </form>
 
