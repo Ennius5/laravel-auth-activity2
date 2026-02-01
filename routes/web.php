@@ -39,3 +39,14 @@ Route::middleware('needsAuth')->group(function(){
     Route::resource('tasks', TaskController::class);
 });
 
+
+Route::get('/session-check', function() {
+    return [
+        'session_id' => session()->getId(),
+        'session_data' => session()->all(),
+        'cookies' => request()->cookie(),
+        'auth_check' => auth()->check(),
+        'auth_user' => auth()->user() ? auth()->user()->email : 'null',
+        'laravel_session_exists' => request()->hasCookie('laravel_session'),
+    ];
+});

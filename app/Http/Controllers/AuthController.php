@@ -25,23 +25,40 @@ class AuthController extends Controller
         return redirect('/login')->with('success', 'Registration successful! Please log in.');
     }
 
-    public function login(Request $request){
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+public function login(Request $request){
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
+    $remember = $request->has('remember');
+
+    if (Auth::attempt($credentials, $remember)) {
+        // Debug before regenerate
+        $oldSessionId = session()->getId();
+
+        $request->session()->regenerate();
+
+        // Debug after regenerate
+        $newSessionId = session()->getId();
+
+        \Log::info('Login session debug', [
+            'old_session_id' => $oldSessionId,
+            'new_session_id' => $newSessionId,
+            'user_id' => Auth::id(),
+            'session_data' => session()->all()
         ]);
 
-        $remember = $request->has('remember');
+        // Force save session
+        session()->save();
 
-        if (Auth::attempt($credentials, $remember)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/home')->with('success', 'Welcome back!');
-        }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        return redirect()->intended('/tasks')->with('success', 'Welcome back!');
     }
+
+    return back()->withErrors([
+        'email' => 'The provided credentials do not match our records.',
+    ])->onlyInput('email');
+}
 
     public function logout(Request $request){
         Auth::logout();
