@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'My Portfolio')</title>
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- DIRECT CSS INCLUSION (brute force) -->
+    <link rel="stylesheet" href="{{ asset('build/assets/app-BbDPFdDW.css') }}">
+    <!-- If you need JS too: -->
+    <script src="{{ asset('build/assets/app-DIuewKhF.js') }}" defer></script>
+    <!--@vite(['resources/css/app.css', 'resources/js/app.js'])-->
 </head>
 <body class="font-sans antialiased bg-cover bg-center bg-no-repeat bg-fixed min-h-screen"
       style="background-image: url('images/Dark-Woods-HD-Photo.jpg');">
